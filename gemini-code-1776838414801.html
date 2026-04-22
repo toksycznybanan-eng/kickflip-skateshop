@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KICKFLIP - Twój Skateshop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Zmienne CSS dla łatwej edycji kolorów */
+        :root {
+            --bg-color: #121212;
+            --text-color: #f4f4f4;
+            --accent-color: #00ff88; /* Neonowy zielony */
+            --card-bg: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Nawigacja */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .cart-btn {
+            background: none;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Sekcja Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1564982759979-2af4101e40a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 18px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sekcja Produktów */
+        .products {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .products h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: var(--accent-color);
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: none;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Stopka */
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #222;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Ukrycie menu na telefonach (wymagałoby JS do obsługi menu hamburgerowego) */
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">KICK<span>FLIP</span></div>
+        <nav>
+            <ul>
+                <li><a href="#nowosci">Nowości</a></li>
+                <li><a href="#deski">Deskorolki</a></li>
+                <li><a href="#czesci">Części</a></li>
+                <li><a href="#ubrania">Ubrania</a></li>
+            </ul>
+        </nav>
+        <button class="cart-btn" onclick="alert('Koszyk jest pusty!')">KOSZYK (0)</button>
+    </header>
+
+    <section class="hero">
+        <h1>Ulica to Twój plac zabaw</h1>
+        <p>Najlepszy sprzęt dla profesjonalistów i amatorów. Skompletuj swój zestaw i ruszaj na miasto.</p>
+        <a href="#produkty" class="cta-btn">Sprawdź sprzęt</a>
+    </section>
+
+    <section id="produkty" class="products">
+        <h2>Najnowsze dropy</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1546272989-40c92939c6c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Blat deskorolkowy">
+                <div class="product-title">Blat KICKFLIP "Nightmare" 8.25"</div>
+                <div class="product-price">249 PLN</div>
+                <button class="add-to-cart" onclick="alert('Dodano do koszyka!')">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kompletna deskorolka">
+                <div class="product-title">Komplet KICKFLIP "Classic Logo"</div>
+                <div class="product-price">499 PLN</div>
+                <button class="add-to-cart" onclick="alert('Dodano do koszyka!')">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1621317586071-7eb922c15ea4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kółka deskorolkowe">
+                <div class="product-title">Kółka Street 52mm / 101A</div>
+                <div class="product-price">129 PLN</div>
+                <button class="add-to-cart" onclick="alert('Dodano do koszyka!')">Dodaj do koszyka</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vans buty">
+                <div class="product-title">Buty Skate Pro Black/White</div>
+                <div class="product-price">349 PLN</div>
+                <button class="add-to-cart" onclick="alert('Dodano do koszyka!')">Dodaj do koszyka</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 KICKFLIP Skateshop. Stworzone z pasją do deski.</p>
+    </footer>
+
+</body>
+</html>
